@@ -134,6 +134,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/path_autonomousvehicles_ros_node.cpp)
+add_executable(main_node_path src/main.cpp)
 # add_executable(global_path_publisher src/global_path_gazebo.cpp)
 add_executable(local_path_publisher src/local_path_gazebo.cpp)
 
@@ -151,6 +152,9 @@ add_executable(local_path_publisher src/local_path_gazebo.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(main_node_path
+  ${catkin_LIBRARIES}
+)
 
 #target_link_libraries(global_path_publisher
 #  ${catkin_LIBRARIES}

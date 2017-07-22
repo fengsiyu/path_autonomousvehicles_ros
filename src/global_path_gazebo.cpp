@@ -22,6 +22,7 @@ int main(int argc, char** argv)
   float radius = 10;
   path.header.stamp = ros::Time::now();
   path.header.frame_id = "base_footprint";
+  ROS_INFO("Global Path formed by 18 points");
   for(int i=0; i < 18 ; i++)
   {
     point.pose.position.x = radius * sin(20*M_PI/180 * i);
