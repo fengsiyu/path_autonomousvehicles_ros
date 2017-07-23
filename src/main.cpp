@@ -6,9 +6,11 @@
 // DCC - Main Function
 
 void mainfuntioncallback(const nav_msgs::Path::ConstPtr& msg){
+//void mainfuntioncallback(){
   ROS_INFO("main_funtioncallback");
-  //ROS_INFO("first is: %f", msg->poses);
-
+  ROS_INFO("first x is: %f", msg->poses[0].pose.position.x);
+  ROS_INFO("first y is: %f", msg->poses[0].pose.position.y);
+  ROS_INFO("first angle is: %f", msg->poses[0].pose.orientation);
 }
 
 
