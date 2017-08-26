@@ -48,8 +48,6 @@ int main(int argc, char** argv){
     ROS_INFO("main node created and registered");
 
 
-    ros::Duration seconds_sleep(1);
-
 
     // Publish Ackermann Drive msg
     ros::Publisher acker_drive = main_node_path.advertise<ackermann_msgs::AckermannDrive>("ackermann_cmd", 1);
@@ -69,35 +67,32 @@ int main(int argc, char** argv){
     acker_drive_msg.acceleration= 0.6;
     acker_drive_msg.speed= 0.1;
 
-    while(ros::ok()){
 
-        // Publish Ackermann Drive
-        acker_drive.publish(acker_drive_msg);
+    // Publish Ackermann Drive
+    acker_drive.publish(acker_drive_msg);
 
-        int sizeofPath = (sizeof(gl_msg_path)/sizeof(float));
+    int sizeofPath = (sizeof(gl_msg_path)/sizeof(float));
 
-        cout << sizeofPath << endl;
-        cout << gl_msg_path << endl;
+    //cout << sizeofPath << endl;
+    //cout << gl_msg_path << endl;
 
-        for(int i = 0; i < sizeofPath; i++ ){
+    //for(int i = 0; i < sizeofPath; i++ ){
 
-            cout << i << endl;
-            //cout << gl_msg_path << endl;
-            //ROS_INFO("first x is: %f", gl_msg_path.poses[i].pose.position.x);
-            //ROS_INFO("first y is: %f", gl_msg_path.poses[i].pose.position.y);
-            //ROS_INFO("first angle is: %f", gl_msg_path.poses[i].pose.orientation);
-        }
+    //    cout << i << endl;
+    //cout << gl_msg_path << endl;
+    //ROS_INFO("first x is: %f", gl_msg_path.poses[i].pose.position.x);
+    //ROS_INFO("first y is: %f", gl_msg_path.poses[i].pose.position.y);
+    //ROS_INFO("first angle is: %f", gl_msg_path.poses[i].pose.orientation);
+    //}
 
-        // TBD
-        //cout << gl_msg_odom.pose.pose.position.x << endl;
-        //cout << gl_msg_odom.pose.pose.position.y << endl;
-        //gl_msg_odom->pose.pose.position.x;
+    // TBD
+    //cout << gl_msg_odom.pose.pose.position.x << endl;
+    //cout << gl_msg_odom.pose.pose.position.y << endl;
+    //gl_msg_odom->pose.pose.position.x;
 
 
-        // Loop
-        ros::spinOnce();
-        seconds_sleep.sleep();
+    // Loop
+    ros::spin();
 
-    }
 
 }
