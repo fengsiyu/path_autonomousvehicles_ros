@@ -11,6 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  nav_msgs
+  tf
+  ackermann_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -137,6 +140,8 @@ include_directories(
 add_executable(main_node_path src/main.cpp)
 # add_executable(global_path_publisher src/global_path_gazebo.cpp)
 add_executable(local_path_publisher src/local_path_gazebo.cpp)
+add_executable(odometry_publisher src/odom_autonomous.cpp)
+add_executable(obstacles_publisher src/teb_obstacles.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -161,6 +166,14 @@ target_link_libraries(main_node_path
 #)
 
 target_link_libraries(local_path_publisher
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(odometry_publisher
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(obstacles_publisher
   ${catkin_LIBRARIES}
 )
 
