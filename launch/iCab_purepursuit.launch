@@ -1,0 +1,29 @@
+<launch>
+  <node pkg="robotnik_pp_planner" type="robotnik_pp_planner_node" name="robotnik_pp_planner" output="screen">
+    <!-- Options: MAP, ODOM -->
+    <param name="position_source" value="MAP" type="string"/>
+    <param name="target_frame" value="base_footprint" type="string"/>
+    <param name="d_lookahead_min" value="0.7"/>
+    <param name="d_lookahead_max" value="1.1"/>
+    <param name="kr" value="0.2"/>
+    <param name="desired_freq" value="100.0"/>
+
+    <!--for Ackerman-->
+    <param name="d_dist_wheel_to_center" value="1.0"/>
+    <!-- type of velocity command (depending on odometry configuration): Ackermann, Twist -->
+
+    <param name="command_type" value="Ackermann"/>
+    <!--<param name="command_type" value="Twist"/>    -->
+    <param name="odom_topic" value="/odom"/>
+    <param name="cmd_topic_vel" value="/cmd_vel"/>
+
+    <param name="obstacle_range" value="1.1"/>
+    <param name="lateral_clearance" value="0.2"/>
+    <param name="footprint_length" value="1.6"/>
+    <param name="footprint_width" value="0.6"/>
+    <param name="obstacle_avoidance" value="false"/>
+    <param name="static_lookahead" value="false"/>
+    <param name="goal_tolerance" value="0.025"/>
+
+  </node>
+</launch>

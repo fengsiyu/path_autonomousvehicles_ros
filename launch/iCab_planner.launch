@@ -6,6 +6,8 @@
 
   <include file="$(find ackermann_vehicle_gazebo)/launch/ackermann_vehicle.launch"/>
   <include file="$(find path_autonomousvehicles_ros)/launch/iCab_configuration.launch"/>
+  <include file="$(find path_autonomousvehicles_ros)/launch/purepursuit.launch"/>
+
 
 </launch>
 

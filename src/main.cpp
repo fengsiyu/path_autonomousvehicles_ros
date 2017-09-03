@@ -5,6 +5,7 @@
 
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
+//#include <robotnik_pp_msgs/GoToActionGoal.h>
 
 #include <iostream>
 
@@ -21,7 +22,7 @@ nav_msgs::Odometry gl_msg_odom;
 //
 //http://wiki.ros.org/navigation/Tutorials/SendingSimpleGoals
 //https://github.com/RobotnikAutomation/robotnik_purepursuit_planner.git
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+//typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 //typedef actionlib::SimpleActionClient<robotnik_pp_msgs::goal> MoveBaseClient;
 
 void localpathcallback(const nav_msgs::Path::ConstPtr& msg_path){
@@ -100,41 +101,76 @@ int main(int argc, char** argv){
   */
 
   // Modify Ackermann msg values
-  acker_drive_msg.steering_angle_velocity = 0.5;
-  acker_drive_msg.steering_angle = 0.2;
-  acker_drive_msg.acceleration= 0.6;
-  acker_drive_msg.speed= 0.1;
-
-  while(ros::ok()){
-
-    ROS_INFO("main in while --");
-
-    // Publish Ackermann Drive
-    acker_drive.publish(acker_drive_msg);
-
-    int sizeofPath = (sizeof(gl_msg_path)/sizeof(float));
-
-    //cout << sizeofPath << endl;
-    //cout << gl_msg_path << endl;
-
-    //for(int i = 0; i < sizeofPath; i++ ){
-
-    //    cout << i << endl;
-    //cout << gl_msg_path << endl;
-    //ROS_INFO("first x is: %f", gl_msg_path.poses[i].pose.position.x);
-    //ROS_INFO("first y is: %f", gl_msg_path.poses[i].pose.position.y);
-    //ROS_INFO("first angle is: %f", gl_msg_path.poses[i].pose.orientation);
-    //}
-
-    // TBD
-    //cout << gl_msg_odom.pose.pose.position.x << endl;
-    //cout << gl_msg_odom.pose.pose.position.y << endl;
-    //gl_msg_odom->pose.pose.position.x;
+  //acker_drive_msg.steering_angle_velocity = 0.5;
+  //acker_drive_msg.steering_angle = 0.2;
+  //acker_drive_msg.acceleration= 0.6;
+  //acker_drive_msg.speed= 0.1;
 
 
-    // Loop
-    ros::spinOnce();
-    seconds_sleep.sleep();
+  if (false) //using the action goal (no loop required)
+  {
+    /*
+    //tell the action client that we want to spin a thread by default
+    MoveBaseClient ac("move_base", true);
 
+    //wait for the action server to come up
+    while(!ac.waitForServer(ros::Duration(5.0))){
+      ROS_INFO("Waiting for the move_base action server to come up");
+    }
+
+    move_base_msgs::MoveBaseGoal goal;
+
+    //we'll send a goal to the robot to move 1 meter forward
+    goal.target_pose.header.frame_id = "base_link";
+    goal.target_pose.header.stamp = ros::Time::now();
+
+    goal.target_pose.pose.position.x = 1.0;
+    goal.target_pose.pose.orientation.w = 1.0;
+
+    ROS_INFO("Sending goal");
+    ac.sendGoal(goal);
+
+    ac.waitForResult();
+
+    if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+      ROS_INFO("Hooray, the base moved 1 meter forward");
+    else
+      ROS_INFO("The base failed to move forward 1 meter for some reason");
+  */
+
+  }else //using the While loop
+  {
+
+    while(ros::ok()){
+
+      ROS_INFO("main in while --");
+
+      // Publish Ackermann Drive
+      //acker_drive.publish(acker_drive_msg);
+
+      int sizeofPath = (sizeof(gl_msg_path)/sizeof(float));
+
+      //cout << sizeofPath << endl;
+      //cout << gl_msg_path << endl;
+
+      //for(int i = 0; i < sizeofPath; i++ ){
+
+      //    cout << i << endl;
+      //cout << gl_msg_path << endl;
+      //ROS_INFO("first x is: %f", gl_msg_path.poses[i].pose.position.x);
+      //ROS_INFO("first y is: %f", gl_msg_path.poses[i].pose.position.y);
+      //ROS_INFO("first angle is: %f", gl_msg_path.poses[i].pose.orientation);
+      //}
+
+      // TBD
+      //cout << gl_msg_odom.pose.pose.position.x << endl;
+      //cout << gl_msg_odom.pose.pose.position.y << endl;
+      //gl_msg_odom->pose.pose.position.x;
+
+
+      // Loop
+      ros::spinOnce();
+      seconds_sleep.sleep();
+    }
   }
 }
