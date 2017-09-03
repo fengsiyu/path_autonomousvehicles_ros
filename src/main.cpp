@@ -70,6 +70,7 @@ int main(int argc, char** argv){
   ros::Subscriber odometry_subscriber = main_node_path.subscribe("gazebo_odometry", 0, odometrycallback);
   ROS_INFO("odometry_subscriber completed");
 
+  /*
   // -----------
   // Purepursuit
   MoveBaseClient ac("move_base", true);
@@ -96,7 +97,7 @@ int main(int argc, char** argv){
     ROS_INFO("Hooray, the base moved 1 meter forward");
   else
     ROS_INFO("The base failed to move forward 1 meter for some reason");
-
+  */
 
   // Modify Ackermann msg values
   acker_drive_msg.steering_angle_velocity = 0.5;

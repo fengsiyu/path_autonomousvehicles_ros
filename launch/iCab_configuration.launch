@@ -1,0 +1,13 @@
+<launch>
+  <!--http://wiki.ros.org/navigation/Tutorials/RobotSetup-->
+
+  <node pkg="path_autonomousvehicles_ros" type="odometry_publisher" name="odometry_publisher" output="screen">
+    <!--<param name="odom_param" value="param_value" />-->
+  </node>
+
+  <!--
+  <node pkg="transform_configuration_pkg" type="transform_configuration_type" name="transform_configuration_name" output="screen">
+    <param name="transform_configuration_param" value="param_value" />
+  </node> Transofrmation fo
+  -->
+</launch>

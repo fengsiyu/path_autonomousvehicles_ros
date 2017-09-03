@@ -1,16 +1,11 @@
 <?xml version="1.0"?>
 <launch>
 
+  <node pkg="path_autonomousvehicles_ros" type="main_node_path" name="main_node" output="screen"/>
+  <node pkg="path_autonomousvehicles_ros" type="local_path_publisher" name="local_path_publisher" output="screen"/>
 
-<node pkg="path_autonomousvehicles_ros" type="main_node_path" name="main_node" output="screen"/>
-
-<node pkg="path_autonomousvehicles_ros" type="local_path_publisher" name="local_path_publisher" output="screen"/>
-
-<node pkg="path_autonomousvehicles_ros" type="odometry_publisher" name="odometry_publisher" output="screen"/>
-
-
-<include file="$(find ackermann_vehicle_gazebo)/launch/ackermann_vehicle.launch"/>
-
+  <include file="$(find ackermann_vehicle_gazebo)/launch/ackermann_vehicle.launch"/>
+  <include file="$(find path_autonomousvehicles_ros)/launch/iCab_configuration.launch"/>
 
 </launch>
 
